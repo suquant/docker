@@ -12,7 +12,4 @@ RUN apt-get install -yq git aufs-tools iptables lxc curl lxc-docker make python
 RUN ln -s /usr/share/i18n/SUPPORTED /var/lib/locales/supported.d/all && locale-gen
 
 RUN echo 'DOCKER_OPTS="-H :2375 -H unix:///var/run/docker.sock"' >> /etc/default/docker
-
-EXPOSE 2375
-
-CMD /etc/init.d/docker start && sleep 1 && tail -F /var/log/upstart/docker.log
+RUN /etc/init.d/docker start && sleep 1 && tail -F /var/log/upstart/docker.log
